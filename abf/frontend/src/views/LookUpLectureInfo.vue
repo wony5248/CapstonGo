@@ -1,8 +1,17 @@
 <template>
-  <div class="LookUpLectureInfo">
+  <div class="LookUpAttendence">
     <v-card class="ma-12" max-width="1000" outlined>
-      <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1">
-      </v-data-table>
+      <v-container fluid>
+        <v-row align="center">
+          <v-col class="d-flex" cols="12" sm="6">
+            <v-select
+              :items="items"
+              label="학기 선택"
+            ></v-select>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1"></v-data-table>
     </v-card>
   </div>
 </template>
@@ -14,18 +23,19 @@ export default {
   },
   data () {
     return {
+      items: ['2019학년도 2학기', '2020학년도 1학기'],
       headers: [
         {
-          text: 'Dessert (100g serving)',
+          text: '교과목번호/분반',
           align: 'start',
           sortable: false,
           value: 'name',
         },
-        { text: 'Calories', value: 'calories' },
-        { text: 'Fat (g)', value: 'fat' },
-        { text: 'Carbs (g)', value: 'carbs' },
-        { text: 'Protein (g)', value: 'protein' },
-        { text: 'Iron (%)', value: 'iron' },
+        { text: '교과목명', value: 'calories' },
+        { text: '학점', value: 'fat' },
+        { text: '주담당교수', value: 'carbs' },
+        { text: '강의실', value: 'protein' },
+        { text: '강의시간', value: 'iron' },
       ],
       desserts: [
         {

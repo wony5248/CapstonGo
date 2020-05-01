@@ -1,14 +1,13 @@
 <template>
   <v-app>
 
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png" width="40"/>
-        <v-img min-width="100" src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png" width="100"/>
-      </div>
+    <v-app-bar app color="#FFF">
+      <v-flex>
+        <v-img src="./assets/ajou.png" width="160"/>
+      </v-flex>
       <v-spacer></v-spacer>
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
+      201520968 윤준영 님 (소프트웨어학과)
+      <v-btn class="ml-4" color="primary"> 로그 아웃</v-btn>
     </v-app-bar>
 
     <v-content>
