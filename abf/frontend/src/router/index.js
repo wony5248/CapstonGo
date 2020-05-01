@@ -1,20 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Student from '../views/Student'
+import Professor from '../views/Professor'
+import Administer from '../views/Administer'
+
 
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: '/Student',
+    name: 'Student',
+    component: Student
   },
   {
-    path: '/LookUpAttendence',
-    name: 'LookUpAttendence',
-    component: () => import('../views/LookUpAttendence.vue')
-  }
+    path: '/Professor',
+    name: 'Professor',
+    component: Professor
+  },
+  {
+    path: '/Administer',
+    name: 'Administer',
+    component: Administer
+  },
 ]
 
 const router = new VueRouter({

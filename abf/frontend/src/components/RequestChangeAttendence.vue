@@ -1,5 +1,5 @@
 <template>
-  <div class="ChangeAttendence">
+  <div class="RequestChangeAttendence">
     <v-card class="ma-12" max-width="1000" outlined>
       <v-layout row class="ml-12">
         <v-row align="center">
@@ -31,7 +31,7 @@
       <v-layout>
         <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1" style="width:100%"></v-data-table>
       </v-layout>    
-      
+      <v-file-input accept="image/*" label="File input"></v-file-input>
     </v-card>
   </div>
 </template>

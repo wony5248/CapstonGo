@@ -7,74 +7,43 @@
       </v-flex>
       <v-spacer></v-spacer>
       201520968 윤준영 님 (소프트웨어학과)
+      <v-select :items="IdentityItems" v-model="Identity"></v-select>
       <v-btn class="ml-4" color="primary"> 로그 아웃</v-btn>
     </v-app-bar>
 
-    <v-content>
-      <v-container class="ma-0 pa-0" row style="height:100%;">
-        <v-container class="ma-0 pa-0" style="width:15%; height:100%;">
-          <v-tabs v-model="tab" background-color="primary" dark vertical style="height:100%;">
-            <v-tab v-for="item in items" :key="item.tab">
-              {{ item.tab }}
-            </v-tab>
-          </v-tabs>
-        </v-container>
-        <v-container class="ma-0 pa-0" style="width:85%">
-        <v-tabs-items v-model="tab">
-            <v-tab-item v-for="item in items" :key="item.tab">
-              <v-card flat>
-                <v-container v-if="item.tab=='HOME'" class="ma-0 pa-0">
-                  <HOME></HOME>
-                </v-container>
-                <v-container v-else-if="item.tab=='출결 현황 조회'" class="ma-0 pa-0">
-                  <LookUpAttendence></LookUpAttendence>
-                </v-container>
-                <v-container v-else-if="item.tab=='시간표 조회'" class="ma-0 pa-0"> 
-                  <LookUpSchedule></LookUpSchedule>
-                </v-container>
-                <v-container v-else-if="item.tab=='강의 정보 조회'" class="ma-0 pa-0">
-                  <LookUpLectureInfo></LookUpLectureInfo>
-                </v-container>
-                <v-container v-else-if="item.tab=='출결 변경 신청'" class="ma-0 pa-0">
-                  <ChangeAttendence></ChangeAttendence>
-                </v-container>
-              </v-card>
-            </v-tab-item>
-          </v-tabs-items>
-        </v-container>
-      </v-container>
+    <v-content v-if="Identity=='Student'">
+      <Student></Student>
+    </v-content>
+    <v-content v-else-if="Identity=='Professor'">
+      <Professor></Professor>
+    </v-content>
+    <v-content v-else-if="Identity=='Administer'">
+      <Administer></Administer>
     </v-content>
 
   </v-app>
 </template>
 
 <script>
-import HOME from './views/Home';
-import LookUpAttendence from './views/LookUpAttendence';
-import LookUpSchedule from './views/LookUpSchedule';
-import LookUpLectureInfo from './views/LookUpLectureInfo';
-import ChangeAttendence from './views/ChangeAttendence';
+import Student from './views/Student';
+import Professor from './views/Professor';
+import Administer from './views/Administer';
 
 export default {
   name: 'App',
 
   components: {
-    HOME,
-    LookUpAttendence,
-    LookUpSchedule,
-    LookUpLectureInfo,
-    ChangeAttendence,
+    Student,
+    Professor,
+    Administer,
   },
 
   data: () => ({
     tab: null,
-    items: [
-      { tab: 'HOME', content: 'Tab 1 Content' },
-      { tab: '출결 현황 조회', content: 'Tab 2 Content' },
-      { tab: '시간표 조회', content: 'Tab 3 Content' },
-      { tab: '강의 정보 조회', content: 'Tab 4 Content' },
-      { tab: '출결 변경 신청', content: 'Tab 5 Content' },
-    ],
+    Identity:"Administer",
+
+    IdentityItems: ['Student', 'Professor','Administer'],
+
   }),
 };
 </script>
