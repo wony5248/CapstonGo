@@ -11,10 +11,7 @@
     <v-tabs-items v-model="tab">
         <v-tab-item v-for="item in items" :key="item.tab">
             <v-card flat>
-            <v-container v-if="item.tab=='HOME'" class="ma-0 pa-0">
-                <HOME></HOME>
-            </v-container>
-            <v-container v-else-if="item.tab=='출결 현황 조회'" class="ma-0 pa-0">
+            <v-container v-if="item.tab=='출결 현황 조회'" class="ma-0 pa-0">
                 <LookUpAttendence></LookUpAttendence>
             </v-container>
             <v-container v-else-if="item.tab=='강의 정보 조회'" class="ma-0 pa-0">
@@ -34,7 +31,6 @@
 </template>
 
 <script>
-import HOME from '../components/Home';
 import LookUpAttendence from '../components/LookUpAttendence';
 import LookUpLectureInfo from '../components/LookUpLectureInfo';
 import ChangeAttendence from '../components/ChangeAttendence';
@@ -44,7 +40,6 @@ export default {
   name: 'Administer',
 
   components: {
-    HOME,
     LookUpAttendence,
     LookUpLectureInfo,
     ChangeAttendence,
@@ -54,7 +49,6 @@ export default {
   data: () => ({
     tab: null,
     items: [
-      { tab: 'HOME'},
       { tab: '출결 현황 조회'},
       { tab: '강의 정보 조회'},
       { tab: '출결 변경'},
