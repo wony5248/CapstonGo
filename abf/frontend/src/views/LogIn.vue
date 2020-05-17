@@ -1,26 +1,81 @@
 <template>
-    <v-container>
-        <div class="form">
-            <div class="form-panel one">
-                <div class="form-header">
-                    <h1>Account Login</h1>
-                </div>
-                <div class="form-content">
-                        <div class="form-group">
-                            <label for="username">ID</label>
-                            <input v-model="ID"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input v-model="password"/>
-                        </div>
-                        <div class="form-group">
-                            <button @click="test">Log In</button>
-                        </div>
-                </div>
+  <v-container>
+    <div class="form" v-if="isSignUp==false">
+      <div class="form-panel one">
+        <div class="form-header">
+            <h1>Account Login</h1>
+        </div>
+        <div class="form-content">
+            <div class="form-group">
+              <label for="username">ID</label>
+              <input v-model="ID"/>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input v-model="password"/>
+            </div>
+            <div class="form-group">
+              <button @click="LogIn">Log In</button>
+            </div>
+            <div class="form-group">
+              <button @click="SignUp">Sign Up</button>
             </div>
         </div>
-    </v-container>
+      </div>
+    </div>
+    <div class="form" v-else-if="isSignUp==true">
+      <div class="form-panel one">
+        <div class="form-header">
+            <h1>Sign Up</h1>
+        </div>
+        <div class="form-content">
+            <div class="form-group">
+              <label for="user_id">user_id</label>
+              <input v-model="user_id"/>
+            </div>
+            <div class="form-group">
+              <label for="passwd">passwd</label>
+              <input v-model="passwd"/>
+            </div>
+            <div class="form-group">
+              <label for="name">name</label>
+              <input v-model="name"/>
+            </div>
+            <div class="form-group">
+              <label for="type">type</label>
+              <input v-model="type"/>
+            </div>
+            <div class="form-group">
+              <label for="member_id">member_id</label>
+              <input v-model="member_id"/>
+            </div>
+            <div class="form-group">
+              <label for="grade">grade</label>
+              <input v-model="grade"/>
+            </div>
+            <div class="form-group">
+              <label for="dept">dept</label>
+              <input v-model="dept"/>
+            </div>
+            <div class="form-group">
+              <label for="major">major</label>
+              <input v-model="major"/>
+            </div>
+            <div class="form-group">
+              <label for="phone_num">phone_num</label>
+              <input v-model="phone_num"/>
+            </div>
+            <div class="form-group">
+              <label for="e_mail">e_mail</label>
+              <input v-model="e_mail"/>
+            </div>
+            <div class="form-group">
+              <button @click="SendSignInfo">SendSignInfo</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -30,19 +85,33 @@ export default {
   },
 
   data: () => ({
-    ID:"",
-    password:"",
+    user_id:"",
+    passwd:"",
+    name:"",
+    type:"",
+    member_id:"",
+    grade:"",
+    dept:"",
+    major:"",
+    phone_num:"",
+    e_mail:"",
+
+    isSignUp:false,
   }),
   methods:{
-    test:function(){
-        this.$emit('childs-event', 'message')
+    LogIn:function(){
+      this.$emit('childs-event', 'message')
+    },
+    SignUp:function(){
+      this.isSignUp=true
+    },
+    SendSignInfo:function(){
+      this.isSignUp=false
+      //post
     }
   }
 };
 </script>
-
-
-
 
 
 
