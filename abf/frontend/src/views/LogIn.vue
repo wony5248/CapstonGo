@@ -72,6 +72,9 @@
             <div class="form-group">
               <button @click="SendSignInfo">SendSignInfo</button>
             </div>
+            <div class="form-group">
+              <button @click="Back">Back</button>
+            </div>
         </div>
       </div>
     </div>
@@ -85,6 +88,9 @@ export default {
   },
 
   data: () => ({
+    ID:"",
+    password:"",
+
     user_id:"",
     passwd:"",
     name:"",
@@ -100,16 +106,56 @@ export default {
   }),
   methods:{
     LogIn:function(){
-      this.$emit('childs-event', 'message')
+      this.$http
+        .post("/api/users/LogIn", {
+          ID:this.ID,
+          password:this.password,
+        })
+        .then(response => {
+          console.log(response)
+          if(response.data=="Success"){
+            this.$emit('childs-event', 'message')
+          }
+          else if(response.data=="NoID"){
+            alert("아이디 없음")
+          }
+          else if(response.data=="NoPassword"){
+            alert("비밀번호 틀림")
+          }
+        })
+        .catch(err => {
+          alert("connection error occured:LogIn/login");
+        });
+      
     },
     SignUp:function(){
       this.isSignUp=true
     },
     SendSignInfo:function(){
+      this.$http
+        .post("/api/users/SignUp", {
+          user_id:this.user_id,
+          passwd:this.passwd,
+          name:this.name,
+          type:this.type,
+          member_id:this.member_id,
+          grade:this.grade,
+          dept:this.dept,
+          major:this.major,
+          phone_num:this.phone_num,
+          e_mail:this.e_mail,
+        })
+        .then(response => {
+          this.isSignUp=false
+        })
+        .catch(err => {
+          alert("connection error occured:LogIn/sign");
+        });
+    },
+    Back:function(){
       this.isSignUp=false
-      //post
     }
-  }
+  },
 };
 </script>
 

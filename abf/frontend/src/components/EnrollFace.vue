@@ -3,15 +3,11 @@
     <v-card class="ma-12" max-width="1000" outlined>
       <v-list-item three-line>
         <v-layout row>
-          <v-img src="http://192.168.0.65:8080/?action=stream" style="width:250px; height:250px;"/>
+          <v-img src="http://192.168.0.68:8091/?action=stream" style="width:250px; height:250px;"/>
         
           <v-layout column>
               <div class="form-panel one">
                 <div class="form-content">
-                    <div class="form-group">
-                      <label for="username">username</label>
-                      <input v-model="ID"/>
-                    </div>
                     <div class="form-group">
                       <label for="member_id">member_id</label>
                       <input v-model="member_id"/>
@@ -34,14 +30,12 @@ export default {
   components: {
   },
   data: () => ({
-    username:"",
     member_id:"",
   }),
   methods:{
     Enroll:function(){
       this.$http
-      .post("",{
-        username:this.username,
+      .post("/api/users/EnrollFace",{
         member_id:this.member_id,
         })
       .then(response => {

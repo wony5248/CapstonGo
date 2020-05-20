@@ -56,14 +56,14 @@ export default {
     ],
   }),
   created(){
-    this.$http
-      .get("/api/users")
-      .then(response => {
-        console.log(response,"받음")
-      })
-      .catch(err => {
-        alert("connection error occured");
-      });
+    // this.$http
+    //   .get("/api/users")
+    //   .then(response => {
+    //     console.log(response,"받음")
+    //   })
+    //   .catch(err => {
+    //     alert("connection error occured:Student");
+    //   });
   }
 };
 </script>
