@@ -11,7 +11,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/LogIn', function (req, res, next) {
-  connection.query('SELECT * FROM abf.user where user_id='+req.body.ID+';', function (err, result) {
+  console.log(req.body.ID)
+  connection.query('SELECT * FROM abf.user where user_id="'+req.body.ID+'";', function (err, result) {
+    console.log(result,"결과")
     if(result[0]==undefined){
       res.send("NoID");
     }

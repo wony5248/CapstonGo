@@ -12,7 +12,7 @@
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input v-model="password"/>
+              <input type="password" v-model="password"/>
             </div>
             <div class="form-group">
               <button @click="LogIn">Log In</button>

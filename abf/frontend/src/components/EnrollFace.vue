@@ -39,7 +39,7 @@ export default {
         member_id:this.member_id,
         })
       .then(response => {
-        console.log(response,"호눌룰루")
+        alert("등록이 완료되었습니다.")
       })
       .catch(err => {
         alert("connection error occured");

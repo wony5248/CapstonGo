@@ -17,7 +17,7 @@
           강의실
         </v-flex>
         <v-flex class="grey0form mx-3" md="3" style="font-weight:bold">
-          팔달관 XXX
+          팔달관 409
         </v-flex>
       </v-layout>
 
@@ -42,17 +42,37 @@
     <v-flex class="grey0form ml-1" md="2" columns>
 
       <v-flex>
-        <v-img :src="require('@/assets/aham.png')" style="width:400px;"/>
+        <v-img src="http://192.168.0.68:8091/?action=stream" style="width:350px;"/>
       </v-flex>
 
-      <v-flex align-self-center>
+      <v-flex align-self-center v-if="check=='now'">
         <v-flex style="text-align:center;">
           <p style="font-weight:bold">{{$moment(time).format('YYYY년 MM월 DD일 HH시 mm분 ss초')}}</p>
         </v-flex>
+         <div class="form-group">
+          <input v-model="ID"/>
+        </div>
         <v-flex class="form-group" dark>
           <button @click="Attendance">출석</button>
         </v-flex>
       </v-flex>
+      <v-flex align-self-center v-else-if="check=='success'">
+        <v-alert dense type="success"> 
+          {{member_id}} {{name}} 정상 처리되었습니다.
+        </v-alert>
+      </v-flex>
+      <v-flex align-self-center v-else-if="check=='fail'">
+        <v-alert dense type="error">
+          출석에 실패하였습니다.
+        </v-alert>
+      </v-flex>
+      <v-flex align-self-center v-else-if="check=='error'">
+        <v-alert dense type="error">
+          등록되지 않은 얼굴입니다.
+        </v-alert>
+      </v-flex>
+
+
     </v-flex>
   </div>
 
@@ -66,20 +86,52 @@ export default {
   components: {
   },
   data: () => ({
-    time: ''
+    time: '',
+    ID:'',
+
+    member_id:'',
+    name:'',
+
+    check:'now',
   }),
   methods:{
     Attendance:function(){
       this.$http
         .post("/api/check", {
+          ID:this.ID,
           time:this.time,
         })
         .then(response => {
-          console.log(response)
+          console.log(response.data)
+          if(response.data.result=='Success'){
+            this.check="success"
+            this.member_id=response.data.member_id
+            this.name=response.data.name
+            setTimeout(() => {
+              this.check="now"
+            }, 4000)
+          }
+          else if(response.data.result=='Fail'){
+            this.check="fail"
+            this.member_id=''
+            this.name=''
+            setTimeout(() => {
+              this.check="now"
+            }, 4000)
+          }
+          else{
+            this.check="error"
+            this.member_id=''
+            this.name=''
+            setTimeout(() => {
+              this.check="now"
+            }, 4000)
+          }
         })
         .catch(err => {
           alert("connection error occured");
         });
+      
       
     }
   },

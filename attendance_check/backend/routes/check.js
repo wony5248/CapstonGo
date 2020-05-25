@@ -20,6 +20,15 @@ router.post('/', function (req, res, next) {
     //         console.log(error);
     //     });
     // })
+    axios.post('http://192.168.0.68:5050/recognize_face', {
+        member_id: req.body.ID,
+    })
+    .then(response => {
+        res.send(response.data)
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
 });
 
 
