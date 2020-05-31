@@ -11,7 +11,9 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1"></v-data-table>
+      <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1" @click:row="handleClick">
+
+      </v-data-table>
     </v-card>
   </div>
 </template>
@@ -121,5 +123,10 @@ export default {
       ],
     }
   },
+  methods:{
+    handleClick:function(value){
+      console.log(value)
+    }
+  }
 }
 </script>

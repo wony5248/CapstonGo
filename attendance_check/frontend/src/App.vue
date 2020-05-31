@@ -11,7 +11,7 @@
           교수명
         </v-flex>
         <v-flex class="grey0form mx-3" md="3" style="font-weight:bold">
-          XXX
+          {{prof_id}}
         </v-flex>
         <v-flex class="grey1form ml-3" md="2" style="font-weight:bold">
           강의실
@@ -26,13 +26,13 @@
           교과목명
         </v-flex>
         <v-flex class="grey0form mx-3" md="3" style="font-weight:bold">
-          XXX
+          {{class_name}}
         </v-flex>
         <v-flex class="grey1form ml-3" md="2" style="font-weight:bold">
-          교과목 코드
+          과목 코드
         </v-flex>
         <v-flex class="grey0form mx-3" md="3" style="font-weight:bold">
-          XXX
+          {{class_id}}
         </v-flex>
       </v-layout>
     </div>
@@ -93,6 +93,10 @@ export default {
     name:'',
 
     check:'now',
+
+    prof_id:'XXX',
+    class_name:'XXX',
+    class_id:'XXX',
   }),
   methods:{
     Attendance:function(){
@@ -136,11 +140,85 @@ export default {
     }
   },
   created() {
+    var date
     setInterval(() => {
-      this.time = new Date();
+      date = new Date();
+      this.time = date
     }, 1000)
+    
+    setInterval(() => {
+      this.$http
+        .post("/api/check/lecture_info", {
+          class_room:'409',
+          time:date.format('HH:mm:ss'),
+          date:date.format('KS'),
+        })
+        .then(response => {
+          console.log(response.data[0],"aaaaaaaaaaaaaaaaaaa")
+          var lecture_info = response.data[0]
+          if(lecture_info!=undefined){
+            console.log(this.class_id,"bbbbbbbb")
+            console.log(lecture_info.class_id,"cccccccc")
+            if(this.class_id!=lecture_info.class_id){
+              this.$http
+                .post("/api/check/attedance_all_fail", {
+                  class_id:response.data[0].class_id,
+                  date:date.format('yyyy-MM-dd'),
+                })
+                .then(response => {
+                  console.log(response.data[0],"qqqqqqqqqqqqqqqqqqqqqq")
+                  this.prof_id = lecture_info.prof_id
+                  this.class_name = lecture_info.class_name
+                  this.class_id = lecture_info.class_id
+                })
+                .catch(err => {
+                  alert("connection error occured");
+                });
+            }
+            
+          }
+          else{
+            this.prof_id = 'XXX'
+            this.class_name = 'XXX'
+            this.class_id = 'XXX'
+          }
+        })
+        .catch(err => {
+          alert("connection error occured");
+        });
+    }, 5000)
   }
 };
+
+Date.prototype.format = function (f) {
+    if (!this.valueOf()) return " ";
+    var weekKorName = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+    var weekKorShortName = ["일", "월", "화", "수", "목", "금", "토"];
+    var weekEngName = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var weekEngShortName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var d = this;
+    return f.replace(/(yyyy|yy|MM|dd|KS|KL|ES|EL|HH|hh|mm|ss|a\/p)/gi, function ($1) {
+        switch ($1) {
+            case "yyyy": return d.getFullYear(); // 년 (4자리)
+            case "yy": return (d.getFullYear() % 1000).zf(2); // 년 (2자리)
+            case "MM": return (d.getMonth() + 1).zf(2); // 월 (2자리)
+            case "dd": return d.getDate().zf(2); // 일 (2자리)
+            case "KS": return weekKorShortName[d.getDay()]; // 요일 (짧은 한글)
+            case "KL": return weekKorName[d.getDay()]; // 요일 (긴 한글)
+            case "ES": return weekEngShortName[d.getDay()]; // 요일 (짧은 영어)
+            case "EL": return weekEngName[d.getDay()]; // 요일 (긴 영어)
+            case "HH": return d.getHours().zf(2); // 시간 (24시간 기준, 2자리)
+            case "hh": return ((h = d.getHours() % 12) ? h : 12).zf(2); // 시간 (12시간 기준, 2자리)
+            case "mm": return d.getMinutes().zf(2); // 분 (2자리)
+            case "ss": return d.getSeconds().zf(2); // 초 (2자리)
+            case "a/p": return d.getHours() < 12 ? "오전" : "오후"; // 오전/오후 구분
+            default: return $1;
+        }
+    });
+};
+String.prototype.string = function (len) { var s = '', i = 0; while (i++ < len) { s += this; } return s; };
+String.prototype.zf = function (len) { return "0".string(len - this.length) + this; };
+Number.prototype.zf = function (len) { return this.toString().zf(len); };
 </script>
 
 
