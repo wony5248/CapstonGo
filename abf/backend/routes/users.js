@@ -49,7 +49,7 @@ router.post('/SignUp', function (req, res, next) {
 
 router.post('/EnrollFace', function (req, res, next) {
   console.log(req.body.member_id)
-  axios.post('http://192.168.0.68:5050/regist_face', {
+  axios.post('http://192.168.0.112:5050/regist_face', {
     member_id:req.body.member_id,
   })
     .then(response => {
@@ -58,6 +58,12 @@ router.post('/EnrollFace', function (req, res, next) {
     .catch(function (error) {
       console.log(error);
     });
+});
+
+router.get('/attendance_check_administer', function (req, res, next) {
+  connection.query('SELECT * FROM abf.class', function (err, result) {
+    res.send(result)
+  })
 });
 
 module.exports = router;

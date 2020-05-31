@@ -20,8 +20,10 @@ router.post('/', function (req, res, next) {
     //         console.log(error);
     //     });
     // })
-    axios.post('http://192.168.0.68:5050/recognize_face', {
+    axios.post('http://192.168.0.112:5050/recognize_face', {
         member_id: req.body.ID,
+        class_id: req.body.class_id,
+        date_id: req.body.date_id,
     })
     .then(response => {
         res.send(response.data)
@@ -59,7 +61,6 @@ router.post('/attedance_all_fail', function (req, res, next) {
                     "date": req.body.date
                 })
                 .then(response => {
-                    console.log(result[i].member_id,"성공")
                 })
                 .catch(function (error) {
                     console.log(error);

@@ -42,7 +42,7 @@
     <v-flex class="grey0form ml-1" md="2" columns>
 
       <v-flex>
-        <v-img src="http://192.168.0.68:8091/?action=stream" style="width:350px;"/>
+        <v-img src="http://192.168.0.112:8091/?action=stream" style="width:350px;"/>
       </v-flex>
 
       <v-flex align-self-center v-if="check=='now'">
@@ -103,7 +103,8 @@ export default {
       this.$http
         .post("/api/check", {
           ID:this.ID,
-          time:this.time,
+          class_id:this.class_id,
+          date_id:(this.time).format('yyyy-MM-dd'),
         })
         .then(response => {
           console.log(response.data)
@@ -154,11 +155,8 @@ export default {
           date:date.format('KS'),
         })
         .then(response => {
-          console.log(response.data[0],"aaaaaaaaaaaaaaaaaaa")
           var lecture_info = response.data[0]
           if(lecture_info!=undefined){
-            console.log(this.class_id,"bbbbbbbb")
-            console.log(lecture_info.class_id,"cccccccc")
             if(this.class_id!=lecture_info.class_id){
               this.$http
                 .post("/api/check/attedance_all_fail", {
@@ -166,7 +164,6 @@ export default {
                   date:date.format('yyyy-MM-dd'),
                 })
                 .then(response => {
-                  console.log(response.data[0],"qqqqqqqqqqqqqqqqqqqqqq")
                   this.prof_id = lecture_info.prof_id
                   this.class_name = lecture_info.class_name
                   this.class_id = lecture_info.class_id
