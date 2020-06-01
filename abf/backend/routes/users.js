@@ -11,17 +11,15 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/LogIn', function (req, res, next) {
-  console.log(req.body.ID)
-  connection.query('SELECT * FROM abf.user where user_id="'+req.body.ID+'";', function (err, result) {
-    console.log(result,"결과")
+  connection.query('SELECT * FROM abf.user where user_id="'+req.body.ID+'";', function (err, result) {  
     if(result[0]==undefined){
       res.send("NoID");
     }
     else if(result[0].passwd==req.body.password){
-      res.send("Success");
+      res.send({result:"Success", info:result[0]});
     }
     else{
-      res.send("NoPassword");
+      res.send("NoPasswNoIDord");
     }
   })
 });
@@ -43,17 +41,18 @@ router.post('/SignUp', function (req, res, next) {
         res.send(response.data)
     })
     .catch(function (error) {
+      res.send(error)
         console.log(error);
     });
 });
 
 router.post('/EnrollFace', function (req, res, next) {
-  console.log(req.body.member_id)
-  axios.post('http://192.168.0.112:5050/regist_face', {
+  axios.post('http://192.168.0.2:5050/regist_face', {
     member_id:req.body.member_id,
   })
     .then(response => {
-      res.send(response)
+      console.log(response,"결과입니다")
+      res.send(response.data)
     })
     .catch(function (error) {
       console.log(error);
@@ -64,6 +63,7 @@ router.get('/attendance_check_administer', function (req, res, next) {
   connection.query('SELECT * FROM abf.class', function (err, result) {
     res.send(result)
   })
+
 });
 
 module.exports = router;

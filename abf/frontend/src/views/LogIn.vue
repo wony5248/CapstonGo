@@ -113,13 +113,13 @@ export default {
         })
         .then(response => {
           console.log(response)
-          if(response.data=="Success"){
-            this.$emit('childs-event', 'message')
+          if(response.data.result=="Success"){
+            this.$emit('childs-event', response.data.info)
           }
-          else if(response.data=="NoID"){
+          else if(response.data.result=="NoID"){
             alert("아이디 없음")
           }
-          else if(response.data=="NoPassword"){
+          else if(response.data.result=="NoPassword"){
             alert("비밀번호 틀림")
           }
         })

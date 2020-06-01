@@ -7,18 +7,18 @@
         <v-img src="./assets/ajou.png" width="160"/>
       </v-flex>
       <v-spacer></v-spacer>
-      201520968 윤준영 님 (소프트웨어학과)
-      <v-select :items="IdentityItems" v-model="Identity"></v-select>
+      {{member_id}} {{name}} 님
+      <!-- <v-select :items="IdentityItems" v-model="Identity"></v-select> -->
       <v-btn class="ml-4" color="primary" @click="LogOut"> 로그 아웃</v-btn>
     </v-app-bar>
 
-    <v-content v-if="Identity=='Student'">
+    <v-content v-if="Identity=='student'">
       <Student></Student>
     </v-content>
-    <v-content v-else-if="Identity=='Professor'">
+    <v-content v-else-if="Identity=='professor'">
       <Professor></Professor>
     </v-content>
-    <v-content v-else-if="Identity=='Administer'">
+    <v-content v-else-if="Identity=='administer'">
       <Administer></Administer>
     </v-content>
 
@@ -48,9 +48,12 @@ export default {
   data: () => ({
     tab: null,
     IsLogin:false,
-    Identity:"Administer",
+    Identity:"administer",
 
-    IdentityItems: ['Student', 'Professor','Administer'],
+    IdentityItems: ['student', 'professor','administer'],
+
+    name:'',
+    member_id:'',
 
   }),
   methods:{
@@ -58,6 +61,10 @@ export default {
       this.IsLogin=false
     },
     parentsMethod: function(message){
+      console.log(message)
+      this.name = message.name
+      this.member_id = message.member_id
+      this.Identity = message.type
       this.IsLogin=true
     }
   }

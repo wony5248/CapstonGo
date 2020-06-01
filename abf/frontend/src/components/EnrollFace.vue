@@ -3,18 +3,23 @@
     <v-card class="ma-12" max-width="1000" outlined>
       <v-list-item three-line>
         <v-layout row>
-          <v-img src="http://192.168.0.112:8091/?action=stream" style="width:250px; height:250px;"/>
+          <v-img src="http://192.168.0.2:8091/?action=stream" style="width:250px; height:250px;"/>
         
           <v-layout column>
               <div class="form-panel one">
-                <div class="form-content">
-                    <div class="form-group">
-                      <label for="member_id">member_id</label>
-                      <input v-model="member_id"/>
-                    </div>
-                    <div class="form-group">
-                      <button @click="Enroll">Enroll</button>
-                    </div>
+                <div class="form-content" v-if="enrollSuccess==false">
+                  <div class="form-group">
+                    <label for="member_id">member_id</label>
+                    <input v-model="member_id"/>
+                  </div>
+                  <div class="form-group">
+                    <button @click="Enroll">Enroll</button>
+                  </div>
+                </div>
+                <div class="form-content" v-else-if="enrollSuccess==true">
+                  <v-alert dense type="success"> 
+                    등록이 완료되었습니다.
+                  </v-alert>
                 </div>
               </div>
           </v-layout>
@@ -31,6 +36,8 @@ export default {
   },
   data: () => ({
     member_id:"",
+
+    enrollSuccess:false
   }),
   methods:{
     Enroll:function(){
@@ -39,7 +46,10 @@ export default {
         member_id:this.member_id,
         })
       .then(response => {
-        alert("등록이 완료되었습니다.")
+        this.enrollSuccess=true
+        setTimeout(() => {
+          this.enrollSuccess=false
+        }, 4000)
       })
       .catch(err => {
         alert("connection error occured");

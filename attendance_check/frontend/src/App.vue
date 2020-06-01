@@ -42,12 +42,12 @@
     <v-flex class="grey0form ml-1" md="2" columns>
 
       <v-flex>
-        <v-img src="http://192.168.0.112:8091/?action=stream" style="width:350px;"/>
+        <v-img src="http://192.168.0.2:8091/?action=stream" style="width:350px;"/>
       </v-flex>
 
       <v-flex align-self-center v-if="check=='now'">
         <v-flex style="text-align:center;">
-          <p style="font-weight:bold">{{$moment(time).format('YYYY년 MM월 DD일 HH시 mm분 ss초')}}</p>
+          <p style="font-weight:bold">{{$moment(time).format('YYYY년 MM월 DD일 HH시 mm분')}}</p>
         </v-flex>
          <div class="form-group">
           <input v-model="ID"/>
