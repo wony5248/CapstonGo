@@ -6,20 +6,14 @@
         </v-data-table>
       </v-flex>
       <v-flex v-else-if="isClick==true&&detailLoading==false">
-        <v-file-input v-model="files" color="deep-purple accent-4" counter label="File input" multiple placeholder="Select your files" prepend-icon="mdi-paperclip" outlined :show-size="1000">
-          <template v-slot:selection="{ index, text }">
-            {{ text }}
-          </template>
-        </v-file-input>
-        
-        <v-btn class="mt-6" @click="send">보내기</v-btn>
+        <v-data-table :headers="detailHeaders" :items="dataDetailTable" :items-per-page="5" class="elevation-2">
+        </v-data-table>
         <v-btn class="mt-6" @click="back">뒤로 가기</v-btn>
       </v-flex>
     </v-card>
     <v-card v-else-if="loading==true">
       로딩 중
     </v-card>
-    
   </div>
 </template>
 
@@ -30,7 +24,6 @@ export default {
   },
   data () {
     return {
-      files: [],
       temp:0,
       headers: [
         {
@@ -61,6 +54,8 @@ export default {
         { text: '출석 시간', value: 'time' },
         { text: '출석 여부', value: 'check' },
       ],
+      dataDetailTable:[],
+      detailLoading:true,
 
       lectureID : [],
       lectureInfo:[],
@@ -69,22 +64,35 @@ export default {
   methods:{
     handleClick:function(value){
       this.isClick=true
-      this.detailLoading=false
+    //   this.$http
+    //   .get("http://203.233.111.7:5050/get_ledger")
+    //   .then(response => {
+    //     this.temp = 0;
+    //     for(var i=0; i<response.data.length; i++){
+    //       if(value.code==response.data[i].Record.verifier){
+    //         this.dataDetailTable[this.temp] = {
+    //           code : response.data[i].Record.verifier,
+    //           room : response.data[i].Record.device,
+    //           student : response.data[i].Record.user,
+    //           date : response.data[i].Record.date,
+    //           time : response.data[i].Record.timestamp,
+    //           check : response.data[i].Record.result
+    //         }
+    //         this.temp=this.temp+1
+    //       }
+    //       if(i==response.data.length-1){
+    //         this.detailLoading=false
+    //       }
+    //     }
+    //   })
+    //   .catch(err => {
+    //     alert("connection error occured");
+    //   });
     },
     back:function(){
       this.isClick=false
       this.detailLoading=true
-    },
-    send:function(){
-      console.log(this.files[0].name)
-      this.$http
-        .post("/api/users/fileUpload",{fileName:this.files[0].name})
-        .then(response => {
-          console.log(response,"받았다")
-        })
-        .catch(err => {
-            alert("connection error occured1111");
-        });
+      this.dataDetailTable=[]
     },
   },
   beforeCreate(){

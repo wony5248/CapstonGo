@@ -12,13 +12,7 @@
         <v-tab-item v-for="item in items" :key="item.tab">
             <v-card flat>
             <v-container v-if="item.tab=='출결 현황 조회'" class="ma-0 pa-0">
-                <LookUpAttendence></LookUpAttendence>
-            </v-container>
-            <v-container v-else-if="item.tab=='시간표 조회'" class="ma-0 pa-0"> 
-                <LookUpSchedule></LookUpSchedule>
-            </v-container>
-            <v-container v-else-if="item.tab=='강의 정보 조회'" class="ma-0 pa-0">
-                <LookUpLectureInfo></LookUpLectureInfo>
+                <LookUpAttendanceStudent></LookUpAttendanceStudent>
             </v-container>
             <v-container v-else-if="item.tab=='출결 변경 신청'" class="ma-0 pa-0">
                 <RequestChangeAttendence></RequestChangeAttendence>
@@ -31,18 +25,14 @@
 </template>
 
 <script>
-import LookUpAttendence from '../components/LookUpAttendence';
-import LookUpSchedule from '../components/LookUpSchedule';
-import LookUpLectureInfo from '../components/LookUpLectureInfo';
+import LookUpAttendanceStudent from '../components/LookUpAttendanceStudent';
 import RequestChangeAttendence from '../components/RequestChangeAttendence';
 
 export default {
   name: 'Student',
 
   components: {
-    LookUpAttendence,
-    LookUpSchedule,
-    LookUpLectureInfo,
+    LookUpAttendanceStudent,
     RequestChangeAttendence,
   },
 
@@ -50,8 +40,6 @@ export default {
     tab: null,
     items: [
       { tab: '출결 현황 조회', content: 'Tab 2 Content' },
-      { tab: '시간표 조회', content: 'Tab 3 Content' },
-      { tab: '강의 정보 조회', content: 'Tab 4 Content' },
       { tab: '출결 변경 신청', content: 'Tab 5 Content' },
     ],
   }),

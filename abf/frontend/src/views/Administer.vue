@@ -14,11 +14,8 @@
             <v-container v-if="item.tab=='출결 현황 조회'" class="ma-0 pa-0">
                 <LookUpAttendence></LookUpAttendence>
             </v-container>
-            <v-container v-else-if="item.tab=='강의 정보 조회'" class="ma-0 pa-0">
-                <LookUpLectureInfo></LookUpLectureInfo>
-            </v-container>
             <v-container v-else-if="item.tab=='출결 변경'" class="ma-0 pa-0">
-                <ChangeAttendence></ChangeAttendence>
+                <ChangeAttendenceAdmin></ChangeAttendenceAdmin>
             </v-container>
             <v-container v-else-if="item.tab=='학생 얼굴 등록'" class="ma-0 pa-0">
                 <EnrollFace></EnrollFace>
@@ -32,8 +29,7 @@
 
 <script>
 import LookUpAttendence from '../components/LookUpAttendence';
-import LookUpLectureInfo from '../components/LookUpLectureInfo';
-import ChangeAttendence from '../components/ChangeAttendence';
+import ChangeAttendenceAdmin from '../components/ChangeAttendenceAdmin';
 import EnrollFace from '../components/EnrollFace';
 
 export default {
@@ -41,8 +37,7 @@ export default {
 
   components: {
     LookUpAttendence,
-    LookUpLectureInfo,
-    ChangeAttendence,
+    ChangeAttendenceAdmin,
     EnrollFace
   },
 
@@ -50,7 +45,6 @@ export default {
     tab: null,
     items: [
       { tab: '출결 현황 조회'},
-      { tab: '강의 정보 조회'},
       { tab: '출결 변경'},
       { tab: '학생 얼굴 등록'},
     ],

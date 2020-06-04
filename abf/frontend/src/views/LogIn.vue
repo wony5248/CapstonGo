@@ -112,7 +112,7 @@ export default {
           password:this.password,
         })
         .then(response => {
-          console.log(response)
+          this.$store.commit("SetInfo", response.data);
           if(response.data.result=="Success"){
             this.$emit('childs-event', response.data.info)
           }

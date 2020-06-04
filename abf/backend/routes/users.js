@@ -2,6 +2,7 @@ var express = require('express');
 var connection = require('../MySQL-db');
 var router = express.Router();
 const axios = require('axios');
+var fs = require('fs');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -62,6 +63,37 @@ router.post('/EnrollFace', function (req, res, next) {
 router.get('/attendance_check_administer', function (req, res, next) {
   connection.query('SELECT * FROM abf.class', function (err, result) {
     res.send(result)
+  })
+
+});
+
+router.get('/apply', function (req, res, next) {
+  connection.query('SELECT * FROM abf.apply', function (err, result) {
+    res.send(result)
+  })
+
+});
+
+let client = require("ssh2-sftp-client")
+router.post('/fileUpload', function (req, res, next) {
+  var ClientPath=__dirname
+  ClientPath = ClientPath.split('\\abf\\backend\\routes');
+  let sftp = new client();
+  sftp.connect({
+    host: "203.233.111.5",
+    port: 22,
+    username: "aham",
+    password: "qwer1234",
+  })
+  .then(response => {
+    return sftp.put(ClientPath[0]+'/'+ req.body.fileName , '/home/aham/hyungeon/' + req.body.fileName);
+  })
+  .then(() => {
+    sftp.end();
+    res.send("upload success")
+  })
+  .catch(err => {
+    console.error(err.message)
   })
 
 });
