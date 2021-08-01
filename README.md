@@ -7,6 +7,7 @@
 ```
   Node.js
   Express
+  MySQL
 ```
 > FE
 ```
