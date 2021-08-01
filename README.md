@@ -14,6 +14,10 @@
   Electron
 ```
 > Object_Detection
+```
+  Mjpg_streamer
+  OpenCV
+```
 > BlockChain
 ```
   Hyperledgar explorer
