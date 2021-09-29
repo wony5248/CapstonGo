@@ -55,10 +55,10 @@ $ npm run serve
 
 
 ## Member
-- 윤준영 <img src="https://img.shields.io/badge/-BE-brightgreen"> <img src="https://img.shields.io/badge/-FE-orange"> <a href="mailto:tnghtlsvkf@naver.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
-- 임희균 <img src="https://img.shields.io/badge/-EM-lightgrey"> <a href="mailto:hydong15@naver.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
-- 장범진 <img src="https://img.shields.io/badge/-BE-brightgreen"> <img src="https://img.shields.io/badge/-FE-orange"> <a href="mailto:wony5248@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
-- 주현근 <img src="https://img.shields.io/badge/-EM-lightgrey"> <a href="mailto:jw01020@naver.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
+- 윤준영 <img src="https://img.shields.io/badge/-FE-orange"> <a href="mailto:tnghtlsvkf@naver.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
+- 임희균 <img src="https://img.shields.io/badge/-BE-brightgreen"> <img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
+- 장범진 <img src="https://img.shields.io/badge/-FE-orange"> <a href="mailto:wony5248@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
+- 주현근 <img src="https://img.shields.io/badge/-BE-brightgreen">  <a href="mailto:jw01020@naver.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
 
 
 ## Demo
