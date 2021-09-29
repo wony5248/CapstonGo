@@ -1,26 +1,31 @@
-# FHTH (For Happy To Happy)
-반려동물 통합 관리 시스템
+# CapstonGo
+블록체인 기반 얼굴인식 출결관리 시스템
 
 
 ## Setup
 ```
-$ git clone https://github.com/SSAFY5-free/FHTH_free.git
-$ cd FHTH_free
+$ git clone https://github.com/wony5248/CapstonGo.git
 
-// backend
-$ cd /AWS/backend
+// device backend
+$ cd attendance_check/backend
 $ npm install
 $ npx nodemon
 
-// frontend
-$ cd AWS/frontend/fhth
+// device frontend
+$ cd attendance_check/frontend
 $ npm install
 $ npm run serve
 
-// rpi backend 
-$ cd backend_rpi
+
+// web backend 
+$ cd abf/backend
 $ npm install
 $ npm start
+
+// web frontend
+$ cd abf/frontend
+$ npm install
+$ npm run serve
 ```
 
 ## Technical Stack
