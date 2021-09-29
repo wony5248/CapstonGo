@@ -14,7 +14,7 @@ $ npx nodemon
 // device frontend
 $ cd attendance_check/frontend
 $ npm install
-$ npm run serve
+$ npm run electron:serve
 
 
 // web backend 
