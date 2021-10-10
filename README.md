@@ -61,7 +61,7 @@ $ npm run serve
 - 주현근 <img src="https://img.shields.io/badge/-BE-brightgreen"> <img src="https://img.shields.io/badge/-BC-purple"> <a href="mailto:jw01020@naver.com" target="_blank"><img src="https://img.shields.io/badge/Email-EA4335?style=flat-square&logo=gmail&logoColor=white"/></a>
 
 
-## Demo
+## PREVIEW
 
 https://user-images.githubusercontent.com/48344143/135209330-f8fa9fd2-7282-4ddc-ad75-0e38e3799b9d.mp4
 
