@@ -1,6 +1,11 @@
 # CapstonGo
 블록체인 기반 얼굴인식 출결관리 시스템
 
+# Why CapstonGo?
+## Why not save the image?
+http://m.kyeongin.com/view.php?key=969310
+## Why use blockchain?
+https://www.asiae.co.kr/article/2015090217203845479
 
 ## Setup
 ```
